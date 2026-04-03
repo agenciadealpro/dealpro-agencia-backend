@@ -1,0 +1,1093 @@
+
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>DealPro Agencia: Publicidad, diseño e impresión en Lima</title>
+
+    <meta name="description"
+          content="DealPro es una agencia creativa en Lima especializada en diseño gráfico, impresión publicitaria y publicidad exterior. Hacemos que tu marca se vea profesional y se recuerde.">
+    <meta name="keywords"
+          content="DealPro, agencia de publicidad Lima, diseño gráfico, impresión publicitaria, gigantografías, branding, publicidad exterior, carteles, vinilos">
+    <meta name="author" content="DealPro Agencia">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://agenciadealpro.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="DealPro Agencia: diseño e impresión publicitaria en Lima">
+    <meta property="og:description"
+          content="Agencia creativa y productora gráfica. Diseñamos e imprimimos piezas publicitarias, branding y publicidad exterior para que tu marca destaque.">
+    <meta property="og:image" content="https://agenciadealpro.com/img/dealpro.png">
+    <meta property="og:url" content="https://agenciadealpro.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DealPro Agencia">
+    <meta property="og:locale" content="es_PE">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DealPro Agencia: publicidad, diseño e impresión">
+    <meta name="twitter:description"
+          content="Soluciones creativas en diseño gráfico, impresión publicitaria y publicidad exterior. Hablemos de tu próximo proyecto.">
+    <meta name="twitter:image" content="https://agenciadealpro.com/img/dealpro.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico?v=2}">
+
+    <!-- Bootstrap - -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome - -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style th:inline="css">
+        :root{
+            --primary: #DA0000;
+            --dark:   #000000;
+            --light:  #FFFFFF;
+            --gray:   #f5f5f5;
+            --muted:  #9ca3af;
+        }
+
+        body{
+            margin:0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--gray);
+            color:#111827;
+        }
+
+        /* NAVBAR GLASS */
+        .navbar{
+            position: fixed;
+            top:0;
+            left:0;
+            right:0;
+            z-index:1030;
+            padding:.75rem 1rem;
+            background: rgba(0,0,0,0.90);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.65);
+        }
+
+        .navbar-brand{
+            color:var(--light) !important;
+        }
+
+        .logo{
+            width:70px;
+            border-radius:14px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.7);
+        }
+
+        .navbar-brand-title{
+            font-size:1.35rem;
+            font-weight:700;
+            letter-spacing:.03em;
+        }
+
+        .navbar-brand-sub{
+            font-size:.8rem;
+            text-transform:uppercase;
+            letter-spacing:.18em;
+            color:var(--muted);
+        }
+
+        .nav-link{
+            font-weight:500;
+            color:#e5e7eb !important;
+            margin-right: .75rem;
+            position:relative;
+        }
+
+        .nav-link::after{
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:-4px;
+            width:0;
+            height:2px;
+            background: linear-gradient(90deg, var(--primary), #ff4d4d);
+            transition:width .25s ease-out;
+        }
+
+        .nav-link:hover::after{
+            width:100%;
+        }
+
+        .nav-cta{
+            border-radius:999px;
+            padding:.45rem 1.25rem!important;
+            background: linear-gradient(135deg, var(--primary), #ff4d4d);
+            color:var(--light)!important;
+            box-shadow:0 10px 25px rgba(218,0,0,0.65);
+        }
+
+        .social-link{
+            width:34px;
+            height:34px;
+            border-radius:999px;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            background:rgba(15,23,42,.85);
+            border:1px solid rgba(148,163,184,.6);
+            color:#e5e7eb;
+            font-size:.85rem;
+            transition:.25s ease-out;
+            text-decoration:none;
+        }
+        .social-link:hover{
+            background:linear-gradient(135deg,var(--primary),#ffffff);
+            color:#000000;
+            box-shadow:0 10px 30px rgba(218,0,0,0.85);
+            transform:translateY(-1px);
+        }
+
+        /* HERO */
+        .hero{
+            min-height:100vh;
+            padding-top:90px;
+            display:flex;
+            align-items:center;
+            background:
+                radial-gradient(circle at top left, rgba(218,0,0,0.50), transparent 60%),
+                radial-gradient(circle at bottom right, rgba(0,0,0,0.85), transparent 60%),
+                linear-gradient(rgba(0,0,0,0.96), rgba(0,0,0,0.98)),
+                url([[@{/img/fondo.png}]]) center/cover no-repeat;
+            color:var(--light);
+        }
+
+        .hero-badge{
+            display:inline-flex;
+            align-items:center;
+            gap:.5rem;
+            padding:.15rem .5rem;
+            border-radius:999px;
+            background: rgba(0,0,0,.75);
+            border:1px solid rgba(148,163,184,.4);
+            font-size:.55rem;
+            text-transform:uppercase;
+            letter-spacing:.16em;
+            color:#e5e7eb;
+        }
+
+        .hero-badge span.dot{
+            width:8px;
+            height:8px;
+            border-radius:999px;
+            background: var(--primary);
+            box-shadow:0 0 10px rgba(218,0,0,.9);
+        }
+
+        .hero-title{
+            font-size:clamp(2.4rem, 3vw + 1.8rem, 3.5rem);
+            font-weight:800;
+            line-height:1.1;
+            margin-top:1.3rem;
+            margin-bottom:.75rem;
+        }
+
+        .hero-gradient{
+            background: linear-gradient(120deg, var(--primary), #ffffff);
+            -webkit-background-clip:text;
+            color:transparent;
+        }
+
+        .hero-lead{
+            font-size:1.05rem;
+            color:#e5e7eb;
+            max-width:34rem;
+        }
+
+        .hero-pill{
+            display:flex;
+            gap:.75rem;
+            margin-top:1.75rem;
+            flex-wrap:wrap;
+        }
+
+        .btn-whatsapp{
+            border-radius:999px;
+            padding:.7rem 1.6rem;
+            display:inline-flex;
+            align-items:center;
+            gap:.55rem;
+            background: linear-gradient(135deg, var(--primary), #ff4d4d);
+            color:var(--light);
+            font-weight:600;
+            text-decoration:none;
+            box-shadow:0 18px 45px rgba(218,0,0,.8);
+            border:none;
+        }
+
+        .btn-whatsapp:hover{
+            filter:brightness(1.05);
+        }
+
+        .btn-outline-light-soft{
+            border-radius:999px;
+            padding:.7rem 1.4rem;
+            border:1px solid rgba(148,163,184,.7);
+            color:#e5e7eb;
+            text-decoration:none;
+            background:rgba(0,0,0,.5);
+        }
+
+        .btn-outline-light-soft:hover{
+            border-color:var(--primary);
+            color:#f9fafb;
+        }
+
+        .hero-metrics{
+            display:flex;
+            gap:2.5rem;
+            margin-top:2.4rem;
+            flex-wrap:wrap;
+            font-size:.9rem;
+            color:#9ca3af;
+        }
+
+        .hero-metric span.value{
+            display:block;
+            font-size:1.6rem;
+            font-weight:700;
+            color:#f9fafb;
+        }
+
+        /* SECCIONES GENERALES */
+        .section{
+            padding:4.5rem 0;
+        }
+
+        .section-title{
+            font-size:2rem;
+            font-weight:800;
+            margin-bottom:.5rem;
+        }
+
+        .section-subtitle{
+            color:#6b7280;
+            font-size:.95rem;
+            text-transform:uppercase;
+            letter-spacing:.18em;
+        }
+
+        /* SOBRE NOSOTROS */
+        .card-glass{
+            background:#ffffff;
+            border-radius:1.5rem;
+            border:1px solid rgba(148,163,184,.35);
+            box-shadow:0 24px 60px rgba(0,0,0,.15);
+            padding:2.25rem;
+        }
+
+        .tag-pill{
+            display:inline-flex;
+            align-items:center;
+            gap:.4rem;
+            padding:.25rem .7rem;
+            border-radius:999px;
+            background:#fee2e2;
+            color:#991b1b;
+            font-size:.75rem;
+            font-weight:600;
+        }
+
+        .tag-pill i{
+            color:var(--primary);
+        }
+
+        .img-about{
+            border-radius:1.75rem;
+            box-shadow:0 24px 60px rgba(0,0,0,.35);
+            max-width:520px;
+            width:100%;
+            object-fit:cover;
+        }
+
+        /* SERVICIOS */
+        .service-card{
+            border-radius:1.3rem;
+            padding:2rem 1.6rem;
+            background:#ffffff;
+            border:1px solid rgba(148,163,184,.25);
+            box-shadow:0 18px 50px rgba(0,0,0,.12);
+            height:100%;
+        }
+
+        .service-icon{
+            width:48px;
+            height:48px;
+            border-radius:1rem;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            background:linear-gradient(135deg, var(--primary), #ff4d4d);
+            color:white;
+        }
+
+        #serviciosCarousel .carousel-inner{
+            padding-bottom:1.5rem;
+        }
+        #serviciosCarousel .carousel-item{
+            transition: transform .8s ease-in-out, opacity .8s ease-in-out;
+        }
+        #serviciosCarousel .carousel-control-prev-icon,
+        #serviciosCarousel .carousel-control-next-icon{
+            filter: drop-shadow(0 0 6px rgba(0,0,0,.6));
+        }
+        #serviciosCarousel .carousel-control-prev,
+        #serviciosCarousel .carousel-control-next{
+            width:5%;
+        }
+        @media (max-width: 767.98px){
+            #serviciosCarousel .col-md-4{
+                flex:0 0 100%;
+                max-width:100%;
+            }
+        }
+
+        /* LOGOS CLIENTES */
+        .clients-section{
+            background:#111827;
+            color:#ffffff;
+            padding:1.5rem 0;
+        }
+
+        .clients-section .section-subtitle{
+            color:#ffffff;
+        }
+
+        .logo-marquee{
+            overflow:hidden;
+            position:relative;
+            width:100%;
+            padding:1.5rem 0;
+        }
+
+        .logo-track{
+            display:flex;
+            width:max-content;
+            animation: scrollLogos 28s linear infinite;
+        }
+
+        .logo-track:hover{
+            animation-play-state:paused;
+        }
+
+        .logo-item{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            min-width:120px;
+            margin:0 4rem;
+            opacity:.85;
+            transition:.25s ease-out;
+        }
+
+        .logo-item img{
+            max-height:100px;
+            width:auto;
+            filter:grayscale(100%);
+            opacity:.8;
+            transition:.25s ease-out;
+        }
+
+        .logo-item:hover img{
+            filter:grayscale(0%);
+            opacity:1;
+            transform:scale(1.03);
+        }
+
+        @keyframes scrollLogos{
+            0%{ transform:translateX(0); }
+            100%{ transform:translateX(-50%); }
+        }
+
+        /* CONTACTO */
+        .contact-section{
+            background: radial-gradient(circle at top, rgba(218,0,0,.30), transparent 60%),
+                        radial-gradient(circle at bottom, rgba(0,0,0,.85), transparent 60%),
+                        #000000;
+            color:var(--light);
+        }
+
+        .contact-card{
+            border-radius:1.75rem;
+            background:rgba(0,0,0,.88);
+            border:1px solid rgba(148,163,184,.4);
+            padding:2.3rem;
+            box-shadow:0 26px 70px rgba(0,0,0,.9);
+            opacity:0;
+            transform:translateX(-40px);
+            animation: slideInLeft 0.9s ease-out 0.1s forwards;
+        }
+
+        .form-control, .form-select{
+            border-radius:.9rem;
+            border:1px solid rgba(148,163,184,.5);
+            padding:.8rem 1rem;
+            background:rgba(15,23,42,.9);
+            color:#f9fafb;
+        }
+
+        .form-control::placeholder{
+            color:#9ca3af;
+        }
+
+        .form-control:focus,
+        .form-select:focus{
+            border-color:var(--primary);
+            box-shadow:0 0 0 1px rgba(218,0,0,.8);
+            background:rgba(0,0,0,.98);
+            color:#f9fafb;
+        }
+
+        .contact-highlight{
+            border-radius:1.75rem;
+            padding:2rem 1.8rem;
+            background:rgba(239,68,68,0.06);
+            border:1px solid rgba(248,113,113,0.4);
+            color:#fee2e2;
+            text-align:left;
+            margin-top:1.5rem;
+            opacity:0;
+            transform:translateX(40px);
+            animation: slideInRight 0.9s ease-out 0.3s forwards;
+        }
+
+        .contact-highlight h3{
+            font-size:1.35rem;
+            font-weight:700;
+            margin-bottom:.75rem;
+        }
+
+        .contact-highlight p{
+            font-size:.95rem;
+            margin-bottom:.5rem;
+        }
+
+        .contact-highlight ul{
+            padding-left:1.2rem;
+            margin-bottom:.75rem;
+        }
+
+        .contact-highlight li{
+            margin-bottom:.25rem;
+        }
+
+        .contact-highlight small{
+            color:#fecaca;
+        }
+
+        /* ANIMACIONES CONTACTO */
+        @keyframes slideInLeft{
+            from{ opacity:0; transform:translateX(-40px); }
+            to{ opacity:1; transform:translateX(0); }
+        }
+
+        @keyframes slideInRight{
+            from{ opacity:0; transform:translateX(40px); }
+            to{ opacity:1; transform:translateX(0); }
+        }
+
+        /* FOOTER */
+        footer{
+            background:#000000;
+            color:#9ca3af;
+            font-size:.85rem;
+        }
+
+        /* BOTÓN FLOTANTE WHATSAPP */
+        .whatsapp-float{
+            position:fixed;
+            right:18px;
+            bottom:18px;
+            z-index:1050;
+            width:58px;
+            height:58px;
+            border-radius:999px;
+            background:linear-gradient(135deg,#25D366,#128C7E);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#ffffff;
+            font-size:30px;
+            box-shadow:0 12px 30px rgba(0,0,0,0.35);
+            text-decoration:none;
+            transition:transform .2s ease-out, box-shadow .2s ease-out, opacity .2s;
+        }
+
+        .whatsapp-float:hover{
+            transform:translateY(-3px) scale(1.03);
+            box-shadow:0 18px 40px rgba(0,0,0,0.45);
+            color:#ffffff;
+        }
+
+        .whatsapp-float-badge{
+            position:fixed;
+            right:82px;
+            bottom:30px;
+            background:rgba(15,23,42,0.96);
+            color:#e5e7eb;
+            padding:8px 12px;
+            border-radius:999px;
+            font-size:12px;
+            display:flex;
+            align-items:center;
+            gap:6px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.45);
+            z-index:1050;
+        }
+
+        .whatsapp-float-badge i{
+            color:#22c55e;
+        }
+
+        @media (max-width: 575.98px){
+            .whatsapp-float{
+                width:52px;
+                height:52px;
+                font-size:26px;
+                right:14px;
+                bottom:14px;
+            }
+            .whatsapp-float-badge{
+                display:none;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991.98px){
+            .hero{
+                text-align:center;
+                padding-top:100px;
+                padding-bottom:60px;
+            }
+            .hero-lead{
+                margin:0 auto;
+            }
+            .hero-metrics{
+                justify-content:center;
+                gap:1.5rem;
+            }
+            .contact-highlight{
+                margin-top:1.75rem;
+            }
+        }
+
+        @media (max-width: 575.98px){
+            .hero-title{
+                font-size:2rem;
+            }
+            .hero-lead{
+                font-size:.95rem;
+            }
+            .section{
+                padding:3.5rem 0;
+            }
+            .card-glass,
+            .contact-card,
+            .contact-highlight{
+                padding:1.6rem 1.4rem;
+                border-radius:1.3rem;
+            }
+            .logo{
+                width:56px;
+            }
+            .navbar{
+                padding:.5rem .75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-3" th:href="@{/}">
+            <img th:src="@{/img/dealpro.png}" class="logo" alt="DealPro">
+            <div>
+                <div class="navbar-brand-title">DealPro</div>
+                <div class="navbar-brand-sub">Hagámoslo distinto</div>
+            </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+            <ul class="navbar-nav align-items-lg-center gap-1">
+                <li class="nav-item">
+                    <a class="nav-link" href="#inicio">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#sobre">Sobre nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/servicios}">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/portafolio}">Portafolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contacto">Contacto</a>
+                </li>
+
+                <li class="nav-item d-flex align-items-center gap-2 mt-2 mt-lg-0">
+                    <a class="social-link" href="https://www.facebook.com/share/1CcGpw7q9V/" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="social-link" href="https://www.instagram.com/dealpro.pe/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="social-link" href="https://wa.me/51942262448" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item mt-2 mt-lg-0">
+                    <a class="nav-link nav-cta text-center" href="https://wa.me/51942262448" target="_blank">
+                        Agenda tu proyecto
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+    <div class="container">
+        <div class="row align-items-center justify-content-between gy-5">
+            <div class="col-lg-7">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Agencia creativa & impresión
+                </div>
+
+                <h1 class="hero-title">
+                    Transformamos ideas en  <br>
+                    <span class="hero-gradient">experiencias visuales</span>
+                </h1>
+                <p class="hero-lead">
+                    Diseñamos y producimos piezas gráficas que captan miradas,
+                    generan confianza y convierten seguidores en clientes.
+                </p>
+
+                <div class="hero-pill">
+                    <a href="https://wa.me/51942262448" target="_blank" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Hablar con DealPro</span>
+                    </a>
+                    <a th:href="@{/servicios}" class="btn-outline-light-soft">
+                        Ver servicios
+                    </a>
+                </div>
+
+                <div class="hero-metrics">
+                    <div class="hero-metric">
+                        <span class="value">+7 años</span>
+                        de experiencia en branding e impresión.
+                    </div>
+                    <div class="hero-metric">
+                        <span class="value">+50 marcas</span>
+                        que ya confiaron en nosotros.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE NOSOTROS -->
+<section id="sobre" class="section">
+    <div class="container">
+        <div class="row gy-5 align-items-center">
+            <div class="col-lg-6">
+                <img th:src="@{/img/dealpro-info.png}" alt="Sobre DealPro" class="img-about">
+            </div>
+            <div class="col-lg-6">
+                <span class="section-subtitle">Sobre nosotros</span>
+                <h2 class="section-title">Transformamos ideas en experiencias visuales poderosas.</h2>
+
+                <div class="card-glass mt-3">
+                    <div class="mb-3 d-flex flex-wrap gap-2">
+                        <span class="tag-pill"><i class="fas fa-check-circle"></i> Impresión publicitaria</span>
+                        <span class="tag-pill"><i class="fas fa-check-circle"></i> Diseño gráfico</span>
+                        <span class="tag-pill"><i class="fas fa-check-circle"></i> Estrategia visual</span>
+                    </div>
+
+                    <p class="mb-3">
+                        Somos DealPro, una agencia especializada en soluciones gráficas e impresas
+                        que potencian la presencia y el crecimiento de las marcas.
+                    </p>
+                    <p class="mb-3">
+                        Con más de 7 años en el mercado y más de 50 empresas atendidas,
+                        combinamos creatividad, estrategia y producción de alta calidad.
+                    </p>
+                    <p class="mb-0">
+                        Nuestro objetivo es que tu marca no solo se vea bien, sino que se recuerde
+                        y genere resultados reales.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICIOS (CARRUSEL) -->
+<section id="servicios" class="section" style="background:#f3f4f6;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-subtitle">Lo que hacemos</span>
+            <h2 class="section-title">Servicios pensados para que tu marca destaque.</h2>
+        </div>
+
+        <div id="serviciosCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+            <div class="carousel-inner">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <div class="row g-4 justify-content-center">
+                        <!-- Impresiones -->
+                        <div class="col-md-4">
+                            <a th:href="@{/servicios}" class="text-decoration-none text-reset">
+                                <div class="service-card h-100">
+                                    <div class="service-icon mb-3">
+                                        <i class="fas fa-print"></i>
+                                    </div>
+                                    <h5>Impresiones (Gigantografías, Vinilos, Celtex)</h5>
+                                    <p class="mb-2">
+                                        Gigantografías, vinilos, lonas, celtex y otros formatos ideales
+                                        para interior y exterior.
+                                    </p>
+                                    <small class="text-muted">
+                                        Producción cuidada, colores fieles y acabados profesionales.
+                                    </small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Cartas enmicadas -->
+                        <div class="col-md-4 d-none d-md-block">
+                            <a th:href="@{/servicios}" class="text-decoration-none text-reset">
+                                <div class="service-card h-100">
+                                    <div class="service-icon mb-3" style="background:linear-gradient(135deg,#991b1b,#450a0a);">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                    <h5>Cartas enmicadas</h5>
+                                    <p class="mb-2">
+                                        Menús enmicados resistentes para restaurantes, cafés y bares.
+                                    </p>
+                                    <small class="text-muted">
+                                        Ideales para uso intensivo y fácil limpieza.
+                                    </small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Hojas membretadas -->
+                        <div class="col-md-4 d-none d-lg-block">
+                            <a th:href="@{/servicios}" class="text-decoration-none text-reset">
+                                <div class="service-card h-100">
+                                    <div class="service-icon mb-3" style="background:linear-gradient(135deg,#b91c1c,#7f1d1d);">
+                                        <i class="fas fa-file-signature"></i>
+                                    </div>
+                                    <h5>Hojas membretadas</h5>
+                                    <p class="mb-2">
+                                        Hojas membretadas profesionales para cotizaciones, comunicaciones y documentos oficiales.
+                                    </p>
+                                    <small class="text-muted">
+                                        Refuerza la imagen de tu empresa en cada documento.
+                                    </small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <div class="row g-4 justify-content-center">
+                        <!-- Cuadernos anillados -->
+                        <div class="col-md-4">
+                            <a th:href="@{/servicios}" class="text-decoration-none text-reset">
+                                <div class="service-card h-100">
+                                    <div class="service-icon mb-3">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <h5>Cuadernos anillados personalizados</h5>
+                                    <p class="mb-2">
+                                        Cuadernos personalizados para tu marca, ideales para regalos corporativos y merchandising.
+                                    </p>
+                                    <small class="text-muted">
+                                        Diferentes tamaños, acabados y tipos de papel.
+                                    </small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Creación de páginas web -->
+                        <div class="col-md-4 d-none d-md-block">
+                            <a th:href="@{/servicios}" class="text-decoration-none text-reset">
+                                <div class="service-card h-100">
+                                    <div class="service-icon mb-3" style="background:linear-gradient(135deg,#ef4444,#b91c1c);">
+                                        <i class="fas fa-hashtag"></i>
+                                    </div>
+                                    <h5>Creación de páginas web</h5>
+                                    <p class="mb-2">
+                                        Sitios web visuales y funcionales para que tu marca tenga presencia profesional en internet.
+                                    </p>
+                                    <small class="text-muted">
+                                        Diseños pensados para tu público objetivo y objetivos de negocio.
+                                    </small>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Manual de identidad -->
+                        <div class="col-md-4 d-none d-lg-block">
+                            <a th:href="@{/servicios}" class="text-decoration-none text-reset">
+                                <div class="service-card h-100">
+                                    <div class="service-icon mb-3" style="background:linear-gradient(135deg,#4b5563,#000000);">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <h5>Manual de identidad visual</h5>
+                                    <p class="mb-2">
+                                        Documento que define el uso correcto de tu logo, colores, tipografías y aplicaciones visuales.
+                                    </p>
+                                    <small class="text-muted">
+                                        Base sólida para que toda tu comunicación se vea consistente.
+                                    </small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Controles carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#serviciosCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#serviciosCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- EMPRESAS QUE CONFÍAN EN NOSOTROS -->
+<section class="clients-section">
+    <div class="container">
+        <div class="text-center mb-4">
+            <span class="section-subtitle">Confían en nosotros</span>
+            <h2 class="section-title text-white">Empresas con las que hemos trabajado</h2>
+        </div>
+
+        <div class="logo-marquee">
+            <div class="logo-track">
+                <!-- Primera tanda de logos -->
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/MARASTHERAPY.png}" alt="MARASTHERAPY">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/MPFITNESS.png}" alt="MPFITNESS">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/MRICE.png}" alt="MRICE">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/LA BAMBI.png}" alt="LA BAMBI">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/CAMEJO BARBER.png}" alt="CAMEJO BARBER">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/YAOL.png}" alt="YAOL">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/MP GRAFIC.png}" alt="MP GRAFIC">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/GH.png}" alt="GH">
+                </div>
+
+                <!-- Tanda duplicada para efecto infinito -->
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/MARASTHERAPY.png}" alt="MARASTHERAPY">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/MPFITNESS.png}" alt="MPFITNESS">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/MRICE.png}" alt="MRICE">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/LA BAMBI.png}" alt="LA BAMBI">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/CAMEJO BARBER.png}" alt="CAMEJO BARBER">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/YAOL.png}" alt="YAOL">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/MP GRAFIC.png}" alt="MP GRAFIC">
+                </div>
+                <div class="logo-item">
+                    <img th:src="@{/img/logos/GH.png}" alt="GH">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="section contact-section">
+    <div class="container">
+        <div class="row gy-5 align-items-start">
+            <div class="col-lg-6">
+                <div class="contact-card">
+                    <span class="section-subtitle">Contacto</span>
+                    <h2 class="section-title mb-2">¿Listo para darle otra cara a tu marca?</h2>
+                    <p class="mb-3 text-gray-300">
+                        Cuéntanos qué necesitas y te responderemos con una propuesta clara y honesta.
+                    </p>
+
+                    <div id="contactStatus" class="mb-3" style="display:none;"></div>
+
+                    <form id="contactoForm" th:action="@{/contacto}" method="POST">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" name="email" class="form-control" placeholder="Tu correo" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mt-1">
+                            <div class="col-sm-6">
+                                <input type="text" name="telefono" class="form-control" placeholder="Tu teléfono">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="empresa" class="form-control" placeholder="Nombre de tu empresa (opcional)">
+                            </div>
+                        </div>
+
+                        <div class="mt-3">
+                            <select name="tipoServicio" class="form-select" required>
+                                <option value="" selected disabled>Selecciona el tipo de servicio que deseas</option>
+                                <option value="Impresion publicitaria">Impresión publicitaria</option>
+                                <option value="Diseno grafico">Diseño gráfico</option>
+                                <option value="Creacion de pagina web">Creación de página web</option>
+                                <option value="Contenidos para redes sociales">Contenidos para redes sociales</option>
+                                <option value="Carta digital">Carta digital</option>
+                                <option value="Manual de identidad">Manual de identidad</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-3">
+                            <textarea name="mensaje" rows="4" class="form-control" placeholder="Describe brevemente tu proyecto, plazos o dudas" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-whatsapp w-100 justify-content-center mt-3">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="contact-highlight">
+                    <h3>Transforma tu proyecto en realidad</h3>
+                    <p>
+                        Obtén una cotización personalizada sin compromiso. Analizamos tu proyecto y te proponemos
+                        la mejor solución visual para tu marca.
+                    </p>
+                    <ul class="list-unstyled mb-2">
+                        <li class="mb-1">
+                            <i class="fas fa-check-circle me-2 text-danger"></i>
+                            Respuesta en menos de 24 horas.
+                        </li>
+                        <li class="mb-1">
+                            <i class="fas fa-check-circle me-2 text-danger"></i>
+                            Asesoría gratuita y personalizada.
+                        </li>
+                        <li class="mb-1">
+                            <i class="fas fa-check-circle me-2 text-danger"></i>
+                            Sin compromiso de compra.
+                        </li>
+                    </ul>
+                    <p class="mb-1">
+                        Cuéntanos en pocas líneas qué necesitas y en qué etapa está tu marca.
+                    </p>
+                    <small>
+                        Cuanto más detalle nos des, más precisa será la propuesta y el presupuesto que recibirás.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="py-3 text-center">
+    <p class="mb-1">© 2026 DealPro - Todos los derechos reservados</p>
+    <small>Diseñado para que tu marca se vea y se recuerde.</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.getElementById('contactoForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(form);
+    const statusDiv = document.getElementById('contactStatus');
+
+    statusDiv.style.display = 'block';
+    statusDiv.className = 'mb-3 text-info';
+    statusDiv.textContent = 'Enviando mensaje...';
+
+    try {
+        const resp = await fetch(form.action, {
+            method: 'POST',
+            body: data
+        });
+
+        if (resp.ok) {
+            statusDiv.className = 'mb-3 text-success';
+            statusDiv.textContent = 'Mensaje enviado correctamente. Te responderemos pronto.';
+            form.reset();
+        } else {
+            statusDiv.className = 'mb-3 text-danger';
+            statusDiv.textContent = 'Hubo un problema al enviar el mensaje. Inténtalo de nuevo.';
+        }
+    } catch (err) {
+        statusDiv.className = 'mb-3 text-danger';
+        statusDiv.textContent = 'Error de conexión al enviar el mensaje.';
+    }
+});
+</script>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a href="https://wa.me/51942262448" target="_blank" class="whatsapp-float" aria-label="Chatea por WhatsApp con DealPro">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<div class="whatsapp-float-badge">
+    <i class="fas fa-comment-dots"></i>
+    <span>¿Hablamos por WhatsApp?</span>
+</div>
+</body>
+</html>

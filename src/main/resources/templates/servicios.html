@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Servicios de impresión y branding en Lima | DealPro</title>
+
+    <meta name="description"
+          content="Impresión publicitaria, papelería corporativa, branding y creación de páginas web en Lima. DealPro hace que tu marca se vea y se recuerde.">
+    <meta name="keywords"
+          content="agenciadealpro, DealPro, impresión publicitaria, gigantografías, vinilos, papelería corporativa, branding, creación de páginas web, Lima, Chosica">
+    <meta name="author" content="DealPro">
+    <link rel="canonical" href="https://agenciadealpro.com/servicios">
+
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico?v=2}">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style th:inline="css">
+        :root{
+            --primary: #DA0000;
+            --dark:   #000000;
+            --light:  #FFFFFF;
+            --gray:   #f5f5f5;
+            --muted:  #9ca3af;
+        }
+
+        body{
+            margin:0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:var(--gray);
+            color:#111827;
+        }
+
+        .navbar{
+            position: fixed;
+            top:0; left:0; right:0;
+            z-index:1030;
+            padding:.75rem 1rem;
+            background: rgba(0,0,0,0.90);
+            backdrop-filter: blur(12px);
+            box-shadow:0 8px 30px rgba(0,0,0,.65);
+        }
+
+        .navbar-brand{
+            color:#f9fafb !important;
+        }
+
+        .logo{
+            width:60px;
+            border-radius:14px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.7);
+        }
+
+        .nav-link{
+            font-weight:500;
+            color:#e5e7eb !important;
+            margin-right:.75rem;
+            position:relative;
+            font-size:.95rem;
+        }
+
+        .nav-link::after{
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:-4px;
+            width:0;
+            height:2px;
+            background: linear-gradient(90deg, var(--primary), #ff4d4d);
+            transition:width .25s ease-out;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after{
+            width:100%;
+        }
+
+        .page-header{
+            padding-top:120px;
+            padding-bottom:40px;
+            background:
+                radial-gradient(circle at top left, rgba(218,0,0,.40), transparent 60%),
+                radial-gradient(circle at bottom right, rgba(0,0,0,.90), transparent 60%),
+                #000000;
+            color:var(--light);
+            text-align:center;
+        }
+
+        .page-header-inner{
+            max-width:46rem;
+            margin:0 auto;
+        }
+
+        .page-kicker{
+            display:inline-flex;
+            align-items:center;
+            gap:.5rem;
+            padding:.25rem .8rem;
+            border-radius:999px;
+            background: rgba(0,0,0,.85);
+            border:1px solid rgba(148,163,184,.4);
+            font-size:.75rem;
+            text-transform:uppercase;
+            letter-spacing:.16em;
+            color:#e5e7eb;
+            margin-bottom:1rem;
+        }
+
+        .page-kicker i{
+            color:var(--primary);
+        }
+
+        .page-title{
+            font-size:2.4rem;
+            font-weight:800;
+            margin-bottom:.5rem;
+        }
+
+        .page-subtitle{
+            color:#e5e7eb;
+            max-width:34rem;
+            margin:0 auto;
+            font-size:.98rem;
+        }
+
+        .page-metrics{
+            display:flex;
+            justify-content:center;
+            gap:2.5rem;
+            margin-top:2rem;
+            flex-wrap:wrap;
+        }
+
+        .metric{
+            text-align:left;
+            min-width:130px;
+        }
+
+        .metric-label{
+            font-size:.78rem;
+            text-transform:uppercase;
+            letter-spacing:.16em;
+            color:#d1d5db;
+        }
+
+        .metric-value{
+            font-size:1.1rem;
+            font-weight:700;
+            color:#f9fafb;
+        }
+
+        .section{
+            padding:3.5rem 0 4.5rem 0;
+        }
+
+        .section-header{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:space-between;
+            align-items:flex-end;
+            gap:1rem;
+            margin-bottom:2rem;
+        }
+
+        .section-title-wrap{
+            max-width:26rem;
+        }
+
+        .section-subtitle{
+            color:var(--primary);
+            font-size:.8rem;
+            text-transform:uppercase;
+            letter-spacing:.18em;
+        }
+
+        .section-title{
+            font-size:1.8rem;
+            font-weight:800;
+            margin:0.25rem 0 0;
+            color:#111827;
+        }
+
+        .section-description{
+            color:#4b5563;
+            font-size:.9rem;
+            max-width:25rem;
+        }
+
+        .pill-filters{
+            display:flex;
+            flex-wrap:wrap;
+            gap:.6rem;
+            margin-top:.4rem;
+        }
+
+        .pill-filter{
+            border-radius:999px;
+            padding:.35rem .9rem;
+            font-size:.8rem;
+            border:1px solid rgba(148,163,184,.7);
+            background:#ffffff;
+            color:#111827;
+            display:inline-flex;
+            align-items:center;
+            gap:.4rem;
+        }
+
+        .pill-filter i{
+            color:var(--primary);
+        }
+
+        .service-card-full{
+            border-radius:1.5rem;
+            overflow:hidden;
+            border:1px solid rgba(148,163,184,.35);
+            box-shadow:0 20px 60px rgba(0,0,0,.18);
+            background:#ffffff;
+            transition:.25s ease-out;
+            height:100%;
+            display:flex;
+            flex-direction:column;
+        }
+
+        .service-card-full:hover{
+            transform:translateY(-4px);
+            box-shadow:0 26px 70px rgba(0,0,0,.25);
+        }
+
+        .service-image-wrapper{
+            position:relative;
+            overflow:hidden;
+            height:220px;
+            background:#000000;
+        }
+
+        .service-image-wrapper img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            transition:transform .45s ease-out;
+        }
+
+        .service-card-full:hover .service-image-wrapper img{
+            transform:scale(1.04);
+        }
+
+        .service-image-badge{
+            position:absolute;
+            left:1rem;
+            bottom:1rem;
+            padding:.25rem .8rem;
+            border-radius:999px;
+            background: rgba(0,0,0,.85);
+            border:1px solid rgba(148,163,184,.6);
+            font-size:.75rem;
+            color:#f9fafb;
+            display:inline-flex;
+            align-items:center;
+            gap:.4rem;
+        }
+
+        .service-image-badge i{
+            color:var(--primary);
+        }
+
+        .service-body{
+            padding:1.4rem 1.4rem 1.3rem;
+            display:flex;
+            flex-direction:column;
+            gap:.35rem;
+            flex:1;
+            color:#111827;
+        }
+
+        .service-tag{
+            font-size:.75rem;
+            text-transform:uppercase;
+            letter-spacing:.16em;
+            color:#6b7280;
+        }
+
+        .service-body h5{
+            font-weight:700;
+            margin:0;
+            color:#111827;
+        }
+
+        .service-body p{
+            font-size:.9rem;
+            margin:0;
+            color:#4b5563;
+        }
+
+        .service-meta{
+            font-size:.78rem;
+            color:#6b7280;
+        }
+
+        .service-footer{
+            margin-top:.6rem;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:.75rem;
+            flex-wrap:wrap;
+        }
+
+        .service-badges{
+            display:flex;
+            flex-wrap:wrap;
+            gap:.35rem;
+            font-size:.7rem;
+        }
+
+        .badge-soft{
+            border-radius:999px;
+            padding:.18rem .65rem;
+            background:#f3f4f6;
+            border:1px solid #e5e7eb;
+            color:#4b5563;
+            display:inline-flex;
+            align-items:center;
+            gap:.3rem;
+        }
+
+        .badge-soft i{
+            color:#16a34a;
+        }
+
+        .service-link{
+            display:inline-flex;
+            align-items:center;
+            gap:.35rem;
+            font-size:.85rem;
+            color:var(--primary);
+            text-decoration:none;
+            font-weight:600;
+            white-space:nowrap;
+        }
+
+        .service-link i{
+            transition:transform .25s ease;
+        }
+
+        .service-card-full:hover .service-link i{
+            transform:translateX(3px);
+        }
+
+        footer{
+            background:#000000;
+            color:#9ca3af;
+            font-size:.85rem;
+        }
+
+        .whatsapp-float{
+            position:fixed;
+            right:18px;
+            bottom:18px;
+            z-index:1050;
+            width:58px;
+            height:58px;
+            border-radius:999px;
+            background:linear-gradient(135deg,#25D366,#128C7E);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#ffffff;
+            font-size:30px;
+            box-shadow:0 12px 30px rgba(0,0,0,0.35);
+            text-decoration:none;
+            transition:transform .2s ease-out, box-shadow .2s ease-out, opacity .2s;
+        }
+
+        .whatsapp-float:hover{
+            transform:translateY(-3px) scale(1.03);
+            box-shadow:0 18px 40px rgba(0,0,0,0.45);
+            color:#ffffff;
+        }
+
+        .whatsapp-float-badge{
+            position:fixed;
+            right:82px;
+            bottom:30px;
+            background:rgba(15,23,42,0.96);
+            color:#e5e7eb;
+            padding:8px 12px;
+            border-radius:999px;
+            font-size:12px;
+            display:flex;
+            align-items:center;
+            gap:6px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.45);
+            z-index:1050;
+        }
+
+        .whatsapp-float-badge i{
+            color:#22c55e;
+        }
+
+        @media (max-width: 575.98px){
+            .whatsapp-float{
+                width:52px;
+                height:52px;
+                font-size:26px;
+                right:14px;
+                bottom:14px;
+            }
+            .whatsapp-float-badge{
+                display:none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-3" th:href="@{/}">
+            <img th:src="@{/img/dealpro.png}" class="logo" alt="DealPro">
+            <span class="fw-bold">DealPro</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavServicios">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavServicios">
+            <ul class="navbar-nav align-items-lg-center gap-1">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/' + '#sobre'}">Sobre nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/servicios}">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/portafolio}">Portafolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/' + '#contacto'}">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="page-header">
+    <div class="page-header-inner">
+        <div class="page-kicker">
+            <i class="fas fa-layer-group"></i>
+            Servicios DealPro
+        </div>
+        <h1 class="page-title">Soluciones que hacen que tu marca se vea y se recuerde.</h1>
+        <p class="page-subtitle">
+            Desde impresión publicitaria hasta branding y contenido digital, diseñamos y producimos
+            todo para que la presencia de tu negocio se vea profesional en cada punto de contacto.
+        </p>
+
+        <div class="page-metrics">
+            <div class="metric">
+                <div class="metric-label">Formatos impresos</div>
+                <div class="metric-value">+15 opciones</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Proyectos ejecutados</div>
+                <div class="metric-value">+50 marcas</div>
+            </div>
+            <div class="metric">
+                <div class="metric-label">Atención</div>
+                <div class="metric-value">Asesoría 1 a 1</div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section">
+    <div class="container">
+
+        <div class="section-header">
+            <div class="section-title-wrap">
+                <span class="section-subtitle">Catálogo de servicios</span>
+                <h2 class="section-title">Impresión, branding y contenido para tu marca.</h2>
+            </div>
+            <div class="section-description">
+                <p class="mb-1">
+                    Elige el servicio que necesitas, revisa el tipo de aplicación y escríbenos por WhatsApp
+                    con un solo clic para recibir una cotización a medida.
+                </p>
+                <div class="pill-filters mt-2">
+                    <span class="pill-filter">
+                        <i class="fas fa-print"></i> Impresión publicitaria
+                    </span>
+                    <span class="pill-filter">
+                        <i class="fas fa-book-open"></i> Papelería &amp; branding
+                    </span>
+                    <span class="pill-filter">
+                        <i class="fas fa-hashtag"></i> Contenido digital
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Impresiones (Gigantografías, Vinilos, Celtex) -->
+            <div class="col-md-6 col-lg-4">
+                <article class="service-card-full">
+                    <div class="service-image-wrapper">
+                        <img th:src="@{/img/servicios/Gigantografias.png}" alt="Gigantografías">
+                        <div class="service-image-badge">
+                            <i class="fas fa-print"></i> Impresión exterior
+                        </div>
+                    </div>
+                    <div class="service-body">
+                        <span class="service-tag">Impresión publicitaria</span>
+                        <h5>Gigantografías, vinilos y celtex</h5>
+                        <p>
+                            Formatos a gran escala para fachadas, campañas, stands y señalética de alto impacto
+                            tanto en interior como en exterior.
+                        </p>
+                        <div class="service-meta">
+                            Lonas, vinilos, celtex, acabados mate o brillo y cortes a medida según tu proyecto.
+                        </div>
+                        <div class="service-footer">
+                            <div class="service-badges">
+                                <span class="badge-soft"><i class="fas fa-check-circle"></i> Instalación opcional</span>
+                                <span class="badge-soft"><i class="fas fa-sun"></i> Resistencia UV</span>
+                            </div>
+							<a href="https://wa.me/51942262448?text=Hola%20DealPro,%20vengo%20desde%20la%20web.%20Quiero%20cotizar%20el%20servicio%20de%20impresiones%20(Gigantograf%C3%ADas,%20Vinilos%20y%20Celtex).%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/servicios/Gigantografias.png"
+							   target="_blank" class="service-link">
+							    Cotizar por WhatsApp <i class="fas fa-arrow-right"></i>
+							</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Cartas enmicadas -->
+            <div class="col-md-6 col-lg-4">
+                <article class="service-card-full">
+                    <div class="service-image-wrapper">
+                        <img th:src="@{/img/servicios/Cartas enmicadas_celtex.png}" alt="Cartas enmicadas">
+                        <div class="service-image-badge">
+                            <i class="fas fa-utensils"></i> Gastronomía
+                        </div>
+                    </div>
+                    <div class="service-body">
+                        <span class="service-tag">Restaurantes &amp; cafés</span>
+                        <h5>Cartas enmicadas</h5>
+                        <p>
+                            Menús enmicados resistentes al uso diario, fáciles de limpiar y con diseños que
+                            reflejan el estilo de tu local.
+                        </p>
+                        <div class="service-meta">
+                            Ideales para restaurantes, cafés, bares y dark kitchens con alto flujo de clientes.
+                        </div>
+                        <div class="service-footer">
+                            <div class="service-badges">
+                                <span class="badge-soft"><i class="fas fa-broom"></i> Limpieza rápida</span>
+                                <span class="badge-soft"><i class="fas fa-water"></i> Resistente a derrames</span>
+                            </div>
+							<a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20interesan%20cartas%20enmicadas%20para%20mi%20restaurante.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/servicios/Cartas%20enmicadas_celtex.png"
+							   target="_blank" class="service-link">
+							    Solicitar información <i class="fas fa-arrow-right"></i>
+							</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Hoja Membretada -->
+            <div class="col-md-6 col-lg-4">
+                <article class="service-card-full">
+                    <div class="service-image-wrapper">
+                        <img th:src="@{/img/servicios/Hoja Membretada.png}" alt="Hoja membretada">
+                        <div class="service-image-badge">
+                            <i class="fas fa-file-signature"></i> Corporativo
+                        </div>
+                    </div>
+                    <div class="service-body">
+                        <span class="service-tag">Papelería corporativa</span>
+                        <h5>Hojas membretadas</h5>
+                        <p>
+                            Papelería corporativa profesional para cotizaciones, contratos y comunicaciones
+                            oficiales con la identidad de tu empresa.
+                        </p>
+                        <div class="service-meta">
+                            Diferentes gramajes de papel, impresión full color y diseño alineado a tu marca.
+                        </div>
+                        <div class="service-footer">
+                            <div class="service-badges">
+                                <span class="badge-soft"><i class="fas fa-building"></i> Empresas y estudios</span>
+                                <span class="badge-soft"><i class="fas fa-pen-nib"></i> Diseño incluido</span>
+                            </div>
+							<a href="https://wa.me/51942262448?text=Hola%20DealPro,%20estoy%20interesado%20en%20hojas%20membretadas%20para%20mi%20empresa.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/servicios/Hoja%20Membretada.png"
+							   target="_blank" class="service-link">
+							    Cotizar por WhatsApp <i class="fas fa-arrow-right"></i>
+							</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Cuadernos Anillados -->
+            <div class="col-md-6 col-lg-4">
+                <article class="service-card-full">
+                    <div class="service-image-wrapper">
+                        <img th:src="@{/img/servicios/Cuadernos Anillados.png}" alt="Cuadernos anillados">
+                        <div class="service-image-badge">
+                            <i class="fas fa-book-open"></i> Papelería
+                        </div>
+                    </div>
+                    <div class="service-body">
+                        <span class="service-tag">Merchandising &amp; regalos</span>
+                        <h5>Cuadernos anillados personalizados</h5>
+                        <p>
+                            Cuadernos con tapa personalizada para tu marca, ideales para regalos corporativos,
+                            kits de bienvenida y merchandising.
+                        </p>
+                        <div class="service-meta">
+                            Distintos formatos, tipos de papel y acabados según tu presupuesto y objetivo.
+                        </div>
+                        <div class="service-footer">
+                            <div class="service-badges">
+                                <span class="badge-soft"><i class="fas fa-gift"></i> Regalo corporativo</span>
+                                <span class="badge-soft"><i class="fas fa-star"></i> Alta recordación</span>
+                            </div>
+							<a href="https://wa.me/51942262448?text=Hola%20DealPro,%20estoy%20interesado%20en%20cuadernos%20anillados%20personalizados.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/servicios/Cuadernos%20Anillados.png"
+							   target="_blank" class="service-link">
+							    Cotizar este servicio <i class="fas fa-arrow-right"></i>
+							</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Creación de páginas web -->
+            <div class="col-md-6 col-lg-4">
+                <article class="service-card-full">
+                    <div class="service-image-wrapper">
+                        <img th:src="@{/img/servicios/Creacion de paginas web.png}" alt="Creación de páginas web">
+                        <div class="service-image-badge">
+                            <i class="fas fa-globe"></i> Web</div>
+                    </div>
+                    <div class="service-body">
+                        <span class="service-tag">Contenido digital</span>
+                        <h5>Creación de páginas web</h5>
+                        <p>
+                            Diseño y desarrollo de sitios web modernos y adaptados a tu marca para captar clientes
+                            y mostrar tus servicios de forma profesional.
+                        </p>
+                        <div class="service-meta">
+                            Páginas optimizadas para móviles, integración con redes sociales y enfoque en conversión.
+                        </div>
+                        <div class="service-footer">
+                            <div class="service-badges">
+                                <span class="badge-soft"><i class="fas fa-calendar-week"></i> Entrega planificada</span>
+                                <span class="badge-soft"><i class="fas fa-bullseye"></i> Enfoque en resultados</span>
+                            </div>
+							<a href="https://wa.me/51942262448?text=Hola%20DealPro,%20vengo%20desde%20la%20web.%20Quiero%20cotizar%20el%20servicio%20de%20creaci%C3%B3n%20de%20p%C3%A1ginas%20web.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/servicios/Creacion%20de%20paginas%20web.png"
+							   target="_blank" class="service-link">
+							    Hablar por WhatsApp <i class="fas fa-arrow-right"></i>
+							</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Manual de Identidad -->
+            <div class="col-md-6 col-lg-4">
+                <article class="service-card-full">
+                    <div class="service-image-wrapper">
+                        <img th:src="@{/img/servicios/Manual de identidad visual.png}" alt="Manual de identidad visual">
+                        <div class="service-image-badge">
+                            <i class="fas fa-book"></i> Branding
+                        </div>
+                    </div>
+                    <div class="service-body">
+                        <span class="service-tag">Base de marca</span>
+                        <h5>Manual de identidad visual</h5>
+                        <p>
+                            Documento que define cómo usar tu logo, colores, tipografías y recursos gráficos
+                            para que toda tu comunicación sea consistente.
+                        </p>
+                        <div class="service-meta">
+                            Incluye versiones de logo, paleta de color, tipografías y ejemplos de aplicación.
+                        </div>
+                        <div class="service-footer">
+                            <div class="service-badges">
+                                <span class="badge-soft"><i class="fas fa-palette"></i> Paleta definida</span>
+                                <span class="badge-soft"><i class="fas fa-layer-group"></i> Aplicaciones clave</span>
+                            </div>
+							<a href="https://wa.me/51942262448?text=Hola%20DealPro,%20vengo%20desde%20la%20web.%20Quiero%20cotizar%20el%20servicio%20de%20manual%20de%20identidad%20visual.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/servicios/Manual%20de%20identidad%20visual.png"
+							   target="_blank" class="service-link">
+							    Cotizar este servicio <i class="fas fa-arrow-right"></i>
+							</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="py-3 text-center">
+    <p class="mb-1">© 2026 DealPro - Todos los derechos reservados</p>
+    <small>Diseñado para que tu marca se vea y se recuerde.</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<a href="https://wa.me/51942262448" target="_blank" class="whatsapp-float"
+   aria-label="Chatea por WhatsApp con DealPro">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<div class="whatsapp-float-badge">
+    <i class="fas fa-comment-dots"></i>
+    <span>¿Hablamos por WhatsApp?</span>
+</div>
+
+</body>
+</html>

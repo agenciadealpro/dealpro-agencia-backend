@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Portafolio de impresión y publicidad exterior en Lima | DealPro</title>
+
+    <meta name="description"
+          content="Portafolio de trabajos de impresión publicitaria, publicidad exterior y branding realizados por DealPro en Lima. Mira cómo ayudamos a las marcas a verse profesionales y memorables.">
+    <meta name="keywords"
+          content="agenciadealpro, DealPro, portafolio, impresión publicitaria, publicidad exterior, branding, gigantografías, letreros luminosos, Lima, Chosica">
+    <meta name="author" content="DealPro">
+    <link rel="canonical" href="https://agenciadealpro.com/portafolio">
+
+    <!-- Open Graph para WhatsApp / redes -->
+    <meta property="og:title" content="Portafolio - DealPro Agencia">
+    <meta property="og:description" content="Trabajos de impresión, publicidad exterior y branding que muestran cómo hacemos que las marcas se vean y se recuerden.">
+    <meta property="og:image" content="https://agenciadealpro.com/img/dealpro.png">
+    <meta property="og:url" content="https://agenciadealpro.com/portafolio">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico?v=2}">
+
+    <!-- CSS externos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style th:inline="css">
+        :root{
+            --primary: #DA0000;
+            --dark:   #000000;
+            --light:  #FFFFFF;
+            --gray:   #f5f5f5;
+            --muted:  #9ca3af;
+        }
+
+        html, body{
+            height:100%;
+        }
+        body{
+            margin:0;
+            display:flex;
+            flex-direction:column;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:var(--gray);
+            color:#111827;
+        }
+        main{
+            flex:1;
+        }
+
+        /* NAVBAR */
+        .navbar{
+            position: fixed;
+            top:0; left:0; right:0;
+            z-index:1030;
+            padding:.75rem 1rem;
+            background: rgba(0,0,0,0.90);
+            backdrop-filter: blur(12px);
+            box-shadow:0 8px 30px rgba(0,0,0,.65);
+        }
+        .logo{
+            width:70px;
+            border-radius:14px;
+            box-shadow:0 10px 25px rgba(0,0,0,.7);
+        }
+        .navbar-brand-title{
+            font-size:1.35rem;
+            font-weight:700;
+        }
+        .navbar-brand-sub{
+            font-size:.8rem;
+            text-transform:uppercase;
+            letter-spacing:.18em;
+            color:var(--muted);
+        }
+        .nav-link{
+            font-weight:500;
+            color:#e5e7eb !important;
+            margin-right:.75rem;
+            position:relative;
+        }
+        .nav-link::after{
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:-4px;
+            width:0;
+            height:2px;
+            background: linear-gradient(90deg, var(--primary), #ff4d4d);
+            transition:width .25s ease-out;
+        }
+        .nav-link:hover::after{
+            width:100%;
+        }
+        .nav-cta{
+            border-radius:999px;
+            padding:.45rem 1.25rem!important;
+            background: linear-gradient(135deg, var(--primary), #ff4d4d);
+            color:var(--light)!important;
+            box-shadow:0 10px 25px rgba(218,0,0,0.65);
+        }
+        .social-link{
+            width:34px; height:34px;
+            border-radius:999px;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            background:rgba(15,23,42,.85);
+            border:1px solid rgba(148,163,184,.6);
+            color:#e5e7eb;
+            font-size:.85rem;
+            text-decoration:none;
+            transition:.25s ease-out;
+        }
+        .social-link:hover{
+            background:linear-gradient(135deg,var(--primary),#ffffff);
+            color:#000000;
+            box-shadow:0 10px 30px rgba(218,0,0,0.85);
+            transform:translateY(-1px);
+        }
+
+        /* HERO PORTAFOLIO */
+        .page-hero{
+            padding-top:110px;
+            padding-bottom:40px;
+            background:
+                radial-gradient(circle at top left, rgba(218,0,0,.40), transparent 60%),
+                radial-gradient(circle at bottom right, rgba(0,0,0,.90), transparent 60%),
+                #000000;
+            color:var(--light);
+        }
+        .badge-soft{
+            display:inline-flex;
+            align-items:center;
+            gap:.5rem;
+            padding:.25rem .8rem;
+            border-radius:999px;
+            background: rgba(0,0,0,.85);
+            border:1px solid rgba(148,163,184,.4);
+            font-size:.75rem;
+            text-transform:uppercase;
+            letter-spacing:.16em;
+        }
+        .badge-soft i{
+            color:var(--primary);
+        }
+        .page-hero-subtitle{
+            color:#e5e7eb;
+            max-width:40rem;
+        }
+
+        .section{
+            padding:3.5rem 0 4.5rem 0;
+        }
+
+        /* CARDS PORTAFOLIO */
+        .card-portfolio{
+            border-radius:1.5rem;
+            overflow:hidden;
+            border:1px solid rgba(148,163,184,.35);
+            box-shadow:0 20px 60px rgba(0,0,0,.18);
+            background:#ffffff;
+            transition:.25s ease-out;
+            display:flex;
+            flex-direction:column;
+            height:100%;
+        }
+        .card-portfolio:hover{
+            transform:translateY(-4px);
+            box-shadow:0 26px 70px rgba(0,0,0,.25);
+        }
+        .card-portfolio img{
+            width:100%;
+            height:320px;
+            object-fit:cover;
+        }
+        .card-portfolio .card-body{
+            padding:1.4rem 1.4rem 1.3rem;
+            flex:1;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+        }
+        .tag{
+            display:inline-flex;
+            align-items:center;
+            gap:.3rem;
+            border-radius:999px;
+            padding:.2rem .7rem;
+            font-size:.75rem;
+            font-weight:600;
+        }
+        .tag.red{
+            background:#fee2e2;
+            color:#991b1b;
+        }
+        .tag.dark{
+            background:#e5e7eb;
+            color:#111827;
+        }
+
+        .portfolio-item{
+            display:flex;
+        }
+
+        /* FILTROS PORTAFOLIO */
+        .filter-buttons{
+            display:flex;
+            flex-wrap:wrap;
+            gap:.5rem;
+            margin-bottom:1.5rem;
+        }
+
+        .filter-btn{
+            border-radius:999px;
+            padding:.35rem .9rem;
+            border:1px solid rgba(148,163,184,.7);
+            background:#ffffff;
+            color:#111827;
+            font-size:.85rem;
+            cursor:pointer;
+            transition:.2s ease-out;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover{
+            background:linear-gradient(135deg,var(--primary),#ff4d4d);
+            color:#ffffff;
+            border-color:transparent;
+        }
+
+        .hidden-card{
+            display:none !important;
+        }
+
+        footer{
+            background:#000000;
+            color:#9ca3af;
+            font-size:.85rem;
+        }
+
+        /* BOTÓN FLOTANTE WHATSAPP */
+        .whatsapp-float{
+            position:fixed;
+            right:18px;
+            bottom:18px;
+            z-index:1050;
+            width:58px;
+            height:58px;
+            border-radius:999px;
+            background:linear-gradient(135deg,#25D366,#128C7E);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#ffffff;
+            font-size:30px;
+            box-shadow:0 12px 30px rgba(0,0,0,0.35);
+            text-decoration:none;
+            transition:transform .2s ease-out, box-shadow .2s ease-out, opacity .2s;
+        }
+
+        .whatsapp-float:hover{
+            transform:translateY(-3px) scale(1.03);
+            box-shadow:0 18px 40px rgba(0,0,0,0.45);
+            color:#ffffff;
+        }
+
+        .whatsapp-float-badge{
+            position:fixed;
+            right:82px;
+            bottom:30px;
+            background:rgba(15,23,42,0.96);
+            color:#e5e7eb;
+            padding:8px 12px;
+            border-radius:999px;
+            font-size:12px;
+            display:flex;
+            align-items:center;
+            gap:6px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.45);
+            z-index:1050;
+        }
+
+        .whatsapp-float-badge i{
+            color:#22c55e;
+        }
+
+        @media (max-width: 575.98px){
+            .whatsapp-float{
+                width:52px;
+                height:52px;
+                font-size:26px;
+                right:14px;
+                bottom:14px;
+            }
+            .whatsapp-float-badge{
+                display:none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-3" th:href="@{/}">
+            <img th:src="@{/img/dealpro.png}" class="logo" alt="DealPro">
+            <div>
+                <div class="navbar-brand-title">DealPro</div>
+                <div class="navbar-brand-sub">Hagámoslo distinto</div>
+            </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+            <ul class="navbar-nav align-items-lg-center gap-1">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/' + '#inicio'}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/' + '#sobre'}">Sobre nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/' + '#servicios'}">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/portafolio}">Portafolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/' + '#contacto'}">Contacto</a>
+                </li>
+
+                <li class="nav-item d-none d-lg-flex ms-3 gap-2">
+                    <a class="social-link" href="https://www.facebook.com/share/1CcGpw7q9V/" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="social-link" href="https://www.instagram.com/dealpro.pe/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="social-link" href="https://wa.me/51942262448" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                    <a class="nav-link nav-cta" href="https://wa.me/51942262448" target="_blank">
+                        Agenda tu proyecto
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="page-hero">
+        <div class="container">
+            <div class="badge-soft mb-3">
+                <i class="fas fa-images"></i>
+                Portafolio DealPro
+            </div>
+            <h1 class="mb-2">Proyectos que hablan por nuestras marcas.</h1>
+            <p class="page-hero-subtitle">
+                Una selección de trabajos en impresión, branding y publicidad exterior
+                que muestran cómo ayudamos a las marcas a verse profesionales y memorables.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <!-- Botones de filtro -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todo</button>
+                <button class="filter-btn" data-filter="impresion">Impresión publicitaria</button>
+                <button class="filter-btn" data-filter="branding">Branding & papelería</button>
+                <button class="filter-btn" data-filter="exteriores">Publicidad exterior</button>
+                <button class="filter-btn" data-filter="otros">Otros</button>
+            </div>
+
+            <div class="row g-4">
+				<!-- IMPRESIÓN PUBLICITARIA -->
+				<div class="col-12">
+				    <h4 class="mb-3" id="impresion">Impresión publicitaria</h4>
+				</div>
+
+				<!-- Roll Screen Publicitario -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="impresion">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Roll Screen Publicitario.jpg}" alt="Roll Screen Publicitario">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Roll screen publicitario</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-print"></i> Impresión
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Roll screens para eventos y puntos de venta, fáciles de transportar y montar.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20interesa%20el%20servicio%20de%20Roll%20screen%20publicitario.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Roll%20Screen%20Publicitario.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Volantes -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="impresion">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Volantes.jpg}" alt="Volantes">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Volantes</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-print"></i> Impresión
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Volantes con información clara y diseños que llaman la atención.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20volantes%20publicitarios%20para%20mi%20negocio.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Volantes.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Volantes Publicitarios -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="impresion">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Volantes Publicitarios.jpg}" alt="Volantes Publicitarios">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Volantes publicitarios</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-print"></i> Impresión
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Flyers promocionales para campañas, lanzamientos y ofertas especiales.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20estoy%20interesado%20en%20volantes%20publicitarios.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Volantes%20Publicitarios.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Trípticos -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="impresion">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Tripticos.jpg}" alt="Tripticos">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Trípticos</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-print"></i> Impresión
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Trípticos informativos para presentar servicios y productos de forma ordenada.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20gustar%C3%ADa%20cotizar%20tr%C3%ADpticos%20para%20mi%20marca.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Tripticos.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Dípticos -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="impresion">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Dipticos.jpg}" alt="Dipticos">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Dípticos</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-print"></i> Impresión
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Dípticos ideales para presentaciones breves y promociones puntuales.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20necesito%20informaci%C3%B3n%20sobre%20d%C3%ADpticos%20publicitarios.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Dipticos.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Catálogos -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="impresion">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Catálogos.jpg}" alt="Catálogos">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Catálogos</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-book-open"></i> Impresión
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Catálogos impresos para mostrar tu portafolio completo de productos o servicios.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20estoy%20interesado%20en%20cat%C3%A1logos%20impresos%20para%20mi%20negocio.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Cat%C3%A1logos.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Calendarios de Escritorio -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="impresion">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Calendario de Escritorio.jpg}" alt="Calendario de Escritorio">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Calendarios de escritorio</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-calendar-alt"></i> Impresión
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Calendarios personalizados como regalo corporativo y presencia de marca todo el año.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quiero%20cotizar%20calendarios%20de%20escritorio%20personalizados%20para%20mi%20empresa.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Calendario%20de%20Escritorio.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Cartas enmicadas -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="impresion">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Cartas enmicadas_celtex.jpg}" alt="Cartas enmicadas_celtex">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Cartas enmicadas</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-utensils"></i> Impresión
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Menús enmicados resistentes para restaurantes, cafés y bares.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20interesan%20cartas%20enmicadas%20para%20mi%20restaurante.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Cartas%20enmicadas_celtex.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- BRANDING & PAPELERÍA -->
+				<div class="col-12 mt-4">
+				    <h4 class="mb-3" id="branding">Branding & papelería</h4>
+				</div>
+
+				<!-- Tarjetas Corporativas -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="branding">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Tarjetas Corporativas.jpg}" alt="Tarjetas Corporativas">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Tarjetas corporativas</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-id-card"></i> Papelería
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Tarjetas de presentación profesionales alineadas a la identidad visual de tu marca.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quisiera%20informaci%C3%B3n%20sobre%20tarjetas%20corporativas%20para%20mi%20marca.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Tarjetas%20Corporativas.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Hoja Membretada -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="branding">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Hoja Membretada.jpg}" alt="Hoja Membretada">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Hojas membretadas</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-file-alt"></i> Papelería
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Papelería institucional para documentos, propuestas y comunicaciones formales.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20necesito%20hojas%20membretadas%20personalizadas%20para%20mi%20empresa.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Hoja%20Membretada.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Folders -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="branding">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Folders.jpg}" alt="Folders">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Folders</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-folder-open"></i> Papelería
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Folders simples para organizar y presentar documentación comercial.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20gustar%C3%ADa%20cotizar%20folders%20impresos%20para%20mi%20negocio.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Folders.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Folders Corporativos -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="branding">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Folders Corporativos.jpg}" alt="Folders Corporativos">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Folders corporativos</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-folder"></i> Papelería
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Carpetas con diseño corporativo para presentaciones y entregables a clientes.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20necesito%20folders%20corporativos%20para%20mi%20empresa.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Folders%20Corporativos.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Cuadernos Anillados -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="branding">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Cuadernos Anillados.jpg}" alt="Cuadernos Anillados">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Cuadernos anillados</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-book"></i> Papelería
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Cuadernos personalizados para uso interno, academias y eventos.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20estoy%20interesado%20en%20cuadernos%20anillados%20personalizados.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Cuadernos%20Anillados.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Cuadernos Empastados -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="branding">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Cuadernos Empastados.jpg}" alt="Cuadernos Empastados">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Cuadernos empastados</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-book-reader"></i> Papelería
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Acabados de mayor durabilidad y presencia para agendas y cuadernos premium.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quisiera%20informaci%C3%B3n%20sobre%20cuadernos%20empastados%20para%20mi%20marca.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Cuadernos%20Empastados.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Fotochecks -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="branding">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Fotochecks.jpg}" alt="Fotochecks">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Fotochecks</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-id-badge"></i> Papelería
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Credenciales y fotochecks para personal, eventos y control de acceso.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20necesito%20fotochecks%20personalizados%20para%20mi%20equipo.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Fotochecks.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+				
+				
+				<!-- PUBLICIDAD EXTERIOR -->
+				<div class="col-12 mt-4">
+				    <h4 class="mb-3" id="exteriores">Publicidad exterior</h4>
+				</div>
+
+				<!-- Brandeo Vehicular -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Brandeo Vehicular.jpg}" alt="Brandeo Vehicular">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Brandeo vehicular</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-car-side"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Vehículos brandeados con vinil de alta calidad para presencia constante en calle.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20interesa%20el%20brandeo%20vehicular.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Brandeo%20Vehicular.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Gigantografías -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Gigantografias.jpg}" alt="Gigantografias">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Gigantografías</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-image"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Impresiones de gran formato para fachadas, ferias y campañas de alto impacto.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quiero%20cotizar%20gigantograf%C3%ADas%20para%20mi%20marca.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Gigantografias.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Valla Publicitaria -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Valla Publicitaria.jpg}" alt="Valla Publicitaria">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Valla publicitaria</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-bullhorn"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Vallas ubicadas estratégicamente para máxima visibilidad y alcance.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20necesito%20informaci%C3%B3n%20sobre%20vallas%20publicitarias%20para%20una%20campa%C3%B1a.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Valla%20Publicitaria.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Letrero Publicitario -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Letrero Publicitario.jpg}" alt="Letrero Publicitario">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Letrero publicitario</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-ad"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Letreros para fachadas y puntos de atención, visibles de día y de noche.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20interesan%20letreros%20publicitarios%20para%20mi%20local.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Letrero%20Publicitario.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Letreros 3D -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Letreros 3D.jpg}" alt="Letreros 3D">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Letreros 3D</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-cube"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Rótulos con volumen para una presencia de marca más impactante.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20letreros%203D%20para%20mi%20negocio.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Letreros%203D.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Letrero Luminoso Ambas Caras -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Letrero Luminoso Ambas Caras.jpg}" alt="Letrero Luminoso Ambas Caras">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Letrero luminoso ambas caras</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-lightbulb"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Cajas luminosas visibles desde ambos lados para fachadas y avenidas.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20estoy%20interesado%20en%20letreros%20luminosos%20de%20dos%20caras.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Letrero%20Luminoso%20Ambas%20Caras.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Caja Luminosa -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Caja Luminosa.jpg}" alt="Caja Luminosa">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Caja luminosa</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-lightbulb"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Cajas de luz personalizadas para resaltar tu marca en interiores y exteriores.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quisiera%20informaci%C3%B3n%20sobre%20cajas%20luminosas%20para%20mi%20local.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Caja%20Luminosa.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Caballete Publicitario -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Caballete_publicitario.jpg}" alt="Caballete_publicitario">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Caballete publicitario</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-sign"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Caballetes para vereda y exteriores que destacan tus promociones.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20interesan%20caballetes%20publicitarios%20para%20mi%20negocio.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Caballete_publicitario.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Parante de Metal -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Parante de Metal.jpg}" alt="Parante de Metal">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Parante de metal</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-border-style"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Parantes resistentes para anuncios en exteriores y puntos estratégicos.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quiero%20cotizar%20parantes%20de%20metal%20para%20publicidad.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Parante%20de%20Metal.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Tótems Publicitarios -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Totems Publicitarios.jpg}" alt="Totems Publicitarios">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Tótems publicitarios</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-archway"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Estructuras verticales para exhibición de marca en tiendas y ferias.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20estoy%20interesado%20en%20t%C3%B3tems%20publicitarios.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Totems%20Publicitarios.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Vinil Troquelado -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="exteriores">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Vinil Troquelado.jpg}" alt="Vinil Troquelado">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Vinil troquelado</h5>
+				                <span class="tag red">
+				                    <i class="fas fa-cut"></i> Exterior
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Viniles recortados a medida para vidrieras, paredes y superficies especiales.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20vinil%20troquelado%20para%20mi%20negocio.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Vinil%20Troquelado.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+				<!-- OTROS PROYECTOS -->
+				<div class="col-12 mt-4">
+				    <h4 class="mb-3" id="otros">Otros proyectos</h4>
+				</div>
+
+				<!-- Módulo de Publicidad -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="otros">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Módulo de Publicidad.jpg}" alt="Módulo de Publicidad">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Módulo de publicidad</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-store"></i> Exhibición
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Módulos personalizados para exhibir productos y materiales promocionales.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quiero%20cotizar%20un%20m%C3%B3dulo%20de%20publicidad%20para%20mi%20marca.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/M%C3%B3dulo%20de%20Publicidad.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Ruleta Publicitaria -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="otros">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Ruleta_Publicitaria.jpg}" alt="Ruleta_Publicitaria">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Ruleta publicitaria</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-gamepad"></i> Activaciones
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Ruletas y dinámicas para activaciones de marca y eventos promocionales.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20me%20interesa%20una%20ruleta%20publicitaria%20para%20activaciones.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Ruleta_Publicitaria.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+				<!-- Siluetas en MDF -->
+				<div class="col-md-6 col-lg-4 portfolio-item" data-category="otros">
+				    <div class="card-portfolio">
+				        <img th:src="@{/img/portfolio/Siluetas en MDF.jpg}" alt="Siluetas en MDF">
+				        <div class="card-body">
+				            <div class="d-flex justify-content-between align-items-center mb-2">
+				                <h5 class="mb-0">Siluetas en MDF</h5>
+				                <span class="tag dark">
+				                    <i class="fas fa-shapes"></i> Decoración
+				                </span>
+				            </div>
+				            <p class="text-muted mb-2">
+				                Figuras en MDF para stands, puntos de venta y decoración temática.
+				            </p>
+				            <a href="https://wa.me/51942262448?text=Hola%20DealPro,%20quiero%20informaci%C3%B3n%20sobre%20siluetas%20en%20MDF%20para%20decoraci%C3%B3n.%20%C2%BFMe%20podr%C3%ADan%20brindar%20una%20cotizaci%C3%B3n?%0AImagen:%20https://agenciadealpro.com/img/portfolio/Siluetas%20en%20MDF.jpg"
+				               target="_blank"
+				               class="btn btn-sm btn-outline-danger mt-2">
+				                <i class="fab fa-whatsapp me-1"></i>
+				                Solicitar por WhatsApp
+				            </a>
+				        </div>
+				    </div>
+				</div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="py-3 text-center">
+    <p class="mb-1">© 2026 DealPro - Todos los derechos reservados</p>
+    <small>Diseñado para que tu marca se vea y se recuerde.</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    const buttons = document.querySelectorAll('.filter-btn');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter');
+
+            // marcar botón activo
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // scroll a la sección correspondiente
+            let targetId;
+            if (filter === 'all') {
+                targetId = 'impresion'; // primera sección
+            } else {
+                targetId = filter;      // impresion / branding / exteriores / otros
+            }
+
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+                const top = targetEl.getBoundingClientRect().top + window.scrollY - (navbarHeight + 16);
+
+                window.scrollTo({
+                    top: top,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+</script>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a href="https://wa.me/51942262448" target="_blank" class="whatsapp-float" aria-label="Chatea por WhatsApp con DealPro">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<div class="whatsapp-float-badge">
+    <i class="fas fa-comment-dots"></i>
+    <span>¿Hablamos por WhatsApp?</span>
+</div>
+</body>
+</html>
