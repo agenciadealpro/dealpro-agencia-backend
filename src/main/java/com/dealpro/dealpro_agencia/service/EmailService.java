@@ -22,33 +22,31 @@ public class EmailService {
     }
 
     public void enviarContacto(String nombre,
-                               String email,
-                               String telefono,
-                               String empresa,
-                               String tipoServicio,
-                               String mensaje) {
+            String email,
+            String telefono,
+            String empresa,
+            String tipoServicio,
+            String mensaje) {
 
-        String telefonoTexto = (telefono != null && !telefono.isBlank())
-                ? telefono
-                : "No especificado";
+String telefonoTexto = (telefono != null && !telefono.isBlank()) ? telefono : "No especificado";
+String empresaTexto  = (empresa  != null && !empresa.isBlank())  ? empresa  : "No especificada";
+String tipoServicioTexto = (tipoServicio != null && !tipoServicio.isBlank()) ? tipoServicio : "No especificado";
+String fechaTexto = LocalDateTime.now().format(FECHA_FORMATO);
 
-        String empresaTexto = (empresa != null && !empresa.isBlank())
-                ? empresa
-                : "No especificada";
+try {
+System.out.println(">>> Antes de enviar correo interno");
+enviarCorreoInterno(nombre, email, telefonoTexto, empresaTexto, tipoServicioTexto, mensaje, fechaTexto);
+System.out.println(">>> Correo interno enviado");
 
-        String tipoServicioTexto = (tipoServicio != null && !tipoServicio.isBlank())
-                ? tipoServicio
-                : "No especificado";
-
-        String fechaTexto = LocalDateTime.now().format(FECHA_FORMATO);
-
-        try {
-            enviarCorreoInterno(nombre, email, telefonoTexto, empresaTexto, tipoServicioTexto, mensaje, fechaTexto);
-            enviarCorreoCliente(nombre, email, telefonoTexto, empresaTexto, tipoServicioTexto, mensaje, fechaTexto);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    }
+System.out.println(">>> Antes de enviar correo al cliente");
+enviarCorreoCliente(nombre, email, telefonoTexto, empresaTexto, tipoServicioTexto, mensaje, fechaTexto);
+System.out.println(">>> Correo al cliente enviado");
+} catch (MessagingException e) {
+System.out.println(">>> ERROR en EmailService.enviarContacto: " + e.getMessage());
+e.printStackTrace();
+throw new RuntimeException("Error enviando correos", e);
+}
+}
 
     private void enviarCorreoInterno(String nombre,
                                      String email,

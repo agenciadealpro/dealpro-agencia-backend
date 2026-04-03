@@ -26,25 +26,33 @@ public class ContactoController {
             @RequestParam String tipoServicio,
             @RequestParam String mensaje
     ) {
-        // 1) Guardar en BD
-        contactoService.guardarContacto(
-                nombre,
-                email,
-                telefono,
-                empresa,
-                tipoServicio,
-                mensaje
-        );
+        System.out.println(">>> Entró al POST /contacto: " + email);
+        try {
+            contactoService.guardarContacto(
+                    nombre,
+                    email,
+                    telefono,
+                    empresa,
+                    tipoServicio,
+                    mensaje
+            );
+            System.out.println(">>> Contacto guardado en BD");
 
-        // 2) Enviar correos (ajusta firma de enviarContacto si quieres incluir los nuevos campos)
-        emailService.enviarContacto(
-        	    nombre,
-        	    email,
-        	    telefono,
-        	    empresa,
-        	    tipoServicio,
-        	    mensaje
-        	);
-        return "redirect:/?enviado=true";
+            emailService.enviarContacto(
+                    nombre,
+                    email,
+                    telefono,
+                    empresa,
+                    tipoServicio,
+                    mensaje
+            );
+            System.out.println(">>> EmailService.enviarContacto() terminó OK");
+
+            return "redirect:/?enviado=true";
+        } catch (Exception e) {
+            System.out.println(">>> ERROR en /contacto: " + e.getMessage());
+            e.printStackTrace();
+            return "redirect:/?error=true";
+        }
     }
 }
