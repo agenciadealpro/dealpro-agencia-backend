@@ -13,20 +13,24 @@ public class ContactoService {
         this.contactoRepository = contactoRepository;
     }
 
-    public void guardarContacto(String nombre,
+    public void guardarContacto(String nombreCompleto,
                                 String email,
+                                String codigoPais,
                                 String telefono,
                                 String empresa,
+                                String rucDni,
                                 String tipoServicio,
-                                String mensaje) {
+                                String detalle) {
 
         Contacto contacto = new Contacto(
-                nombre,
+                nombreCompleto,
                 email,
+                codigoPais,
                 telefono,
                 empresa,
+                rucDni,
                 tipoServicio,
-                mensaje
+                detalle
         );
 
         contactoRepository.save(contacto);

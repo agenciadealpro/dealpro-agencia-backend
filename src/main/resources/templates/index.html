@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -35,10 +34,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico?v=2}">
 
-    <!-- Bootstrap - -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome - -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style th:inline="css">
@@ -558,6 +557,20 @@
             }
         }
 
+        /* OVERLAY DE CARGA */
+        #loader-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-size: 1.3rem;
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 991.98px){
             .hero{
@@ -603,6 +616,10 @@
     </style>
 </head>
 <body>
+
+<div id="loader-overlay">
+    Enviando a Dealpro, por favor espera...
+</div>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark">
@@ -678,16 +695,17 @@
                     generan confianza y convierten seguidores en clientes.
                 </p>
 
-                <div class="hero-pill">
-                    <a href="https://wa.me/51942262448" target="_blank" class="btn-whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>Hablar con DealPro</span>
-                    </a>
-                    <a th:href="@{/servicios}" class="btn-outline-light-soft">
-                        Ver servicios
-                    </a>
-                </div>
-
+				<div class="hero-pill">
+				    <a href="https://wa.me/51942262448?text=Hola%20Dealpro,%20me%20interesa%20recibir%20informaci%C3%B3n%20y%20una%20cotizaci%C3%B3n%20para%20mi%20marca."
+				       target="_blank"
+				       class="btn-whatsapp">
+				        <i class="fab fa-whatsapp"></i>
+				        <span>Hablar con DealPro</span>
+				    </a>
+				    <a th:href="@{/servicios}" class="btn-outline-light-soft">
+				        Ver servicios
+				    </a>
+				</div>
                 <div class="hero-metrics">
                     <div class="hero-metric">
                         <span class="value">+7 años</span>
@@ -950,45 +968,89 @@
     </div>
 </section>
 
-<!-- CONTACTO -->
+<!-- CONTACTO (WHATSAPP) -->
 <section id="contacto" class="section contact-section">
     <div class="container">
         <div class="row gy-5 align-items-start">
-            <div class="col-lg-6">
+            <!-- FORMULARIO TIPO WHATSAPP -->
+            <div class="col-lg-7">
                 <div class="contact-card">
-                    <span class="section-subtitle">Contacto</span>
-                    <h2 class="section-title mb-2">¿Listo para darle otra cara a tu marca?</h2>
+                    <span class="section-subtitle">Contacto por WhatsApp</span>
+                    <h2 class="section-title mb-2">Escríbenos como si fuera un chat</h2>
                     <p class="mb-3 text-gray-300">
-                        Cuéntanos qué necesitas y te responderemos con una propuesta clara y honesta.
+                        Completa el formulario y te llevamos directo al WhatsApp de Dealpro con tu mensaje listo.
                     </p>
 
-                    <div id="contactStatus" class="mb-3" style="display:none;"></div>
-
-                    <form id="contactoForm" th:action="@{/contacto}" method="POST">
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
+                    <!-- Cabecera tipo chat -->
+                    <div class="d-flex align-items-center mb-3 p-2 rounded"
+                         style="background:rgba(15,23,42,0.9); border:1px solid rgba(148,163,184,.4);">
+                        <div class="me-2">
+                            <div style="width:34px;height:34px;border-radius:999px;
+                                        background:#22c55e;display:flex;align-items:center;
+                                        justify-content:center;color:#fff;font-size:18px;">
+                                <i class="fab fa-whatsapp"></i>
                             </div>
-                            <div class="col-sm-6">
-                                <input type="email" name="email" class="form-control" placeholder="Tu correo" required>
+                        </div>
+                        <div>
+                            <div style="font-weight:600;">Dealpro Agencia</div>
+                            <small style="color:#9ca3af;">Responde habitualmente en pocas horas</small>
+                        </div>
+                    </div>
+
+                    <form id="contactoForm" th:action="@{/contacto-whatsapp}" method="POST">
+                        <!-- “Burbuja” del usuario -->
+                        <div class="mb-3">
+                            <div style="background:#075E54;border-radius:16px 16px 4px 16px;
+                                        padding:10px 12px;max-width:100%;display:inline-block;">
+                                <small style="color:#d1fae5;">
+                                    Completa los siguientes datos:
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <input type="text" name="nombreCompleto" class="form-control"
+                                       placeholder="Nombre y apellidos" required>
                             </div>
                         </div>
 
                         <div class="row g-3 mt-1">
                             <div class="col-sm-6">
-                                <input type="text" name="telefono" class="form-control" placeholder="Tu teléfono">
+                                <input type="email" name="email" class="form-control"
+                                       placeholder="Correo (opcional)">
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" name="empresa" class="form-control" placeholder="Nombre de tu empresa (opcional)">
+                                <div class="d-flex gap-2">
+                                    <select name="codigoPais" class="form-select" style="max-width: 130px;" required>
+                                        <option value="51" selected>+51 Perú</option>
+                                        <option value="57">+57 Col</option>
+                                        <option value="54">+54 Arg</option>
+                                        <option value="56">+56 Chi</option>
+                                    </select>
+                                    <input type="tel" name="telefono" class="form-control"
+                                           placeholder="Tu WhatsApp" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mt-1">
+                            <div class="col-sm-6">
+                                <input type="text" name="empresa" class="form-control"
+                                       placeholder="Empresa / Representante" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" name="rucDni" class="form-control"
+                                       placeholder="RUC o DNI" required>
                             </div>
                         </div>
 
                         <div class="mt-3">
                             <select name="tipoServicio" class="form-select" required>
-                                <option value="" selected disabled>Selecciona el tipo de servicio que deseas</option>
-                                <option value="Impresion publicitaria">Impresión publicitaria</option>
-                                <option value="Diseno grafico">Diseño gráfico</option>
-                                <option value="Creacion de pagina web">Creación de página web</option>
+                                <option value="" selected disabled>¿Qué servicio te interesa?</option>
+                                <option value="Impresión publicitaria">Impresión publicitaria</option>
+                                <option value="Diseño gráfico">Diseño gráfico</option>
+                                <option value="Creación de página web">Creación de página web</option>
                                 <option value="Contenidos para redes sociales">Contenidos para redes sociales</option>
                                 <option value="Carta digital">Carta digital</option>
                                 <option value="Manual de identidad">Manual de identidad</option>
@@ -997,23 +1059,25 @@
                         </div>
 
                         <div class="mt-3">
-                            <textarea name="mensaje" rows="4" class="form-control" placeholder="Describe brevemente tu proyecto, plazos o dudas" required></textarea>
+                            <textarea name="detalle" rows="4" class="form-control"
+                                      placeholder="Escribe aquí lo que necesitas como si fuera un mensaje de WhatsApp"
+                                      required></textarea>
                         </div>
 
                         <button type="submit" class="btn-whatsapp w-100 justify-content-center mt-3">
-                            <i class="fas fa-paper-plane"></i>
-                            Enviar mensaje
+                            <i class="fab fa-whatsapp"></i>
+                            Enviar mensaje a WhatsApp de Dealpro
                         </button>
                     </form>
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <!-- Columna derecha simplificada (sin textos que querías quitar) -->
+            <div class="col-lg-5">
                 <div class="contact-highlight">
-                    <h3>Transforma tu proyecto en realidad</h3>
+                    <h3>Hablemos de tu proyecto</h3>
                     <p>
-                        Obtén una cotización personalizada sin compromiso. Analizamos tu proyecto y te proponemos
-                        la mejor solución visual para tu marca.
+                        Te respondemos por WhatsApp con una propuesta clara y adaptada a tu marca.
                     </p>
                     <ul class="list-unstyled mb-2">
                         <li class="mb-1">
@@ -1029,18 +1093,11 @@
                             Sin compromiso de compra.
                         </li>
                     </ul>
-                    <p class="mb-1">
-                        Cuéntanos en pocas líneas qué necesitas y en qué etapa está tu marca.
-                    </p>
-                    <small>
-                        Cuanto más detalle nos des, más precisa será la propuesta y el presupuesto que recibirás.
-                    </small>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 <footer class="py-3 text-center">
     <p class="mb-1">© 2026 DealPro - Todos los derechos reservados</p>
     <small>Diseñado para que tu marca se vea y se recuerde.</small>
@@ -1049,45 +1106,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-document.getElementById('contactoForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
+	const form = document.getElementById('contactoForm');
+	    const loader = document.getElementById('loader-overlay');
 
-    const form = e.target;
-    const data = new FormData(form);
-    const statusDiv = document.getElementById('contactStatus');
-
-    statusDiv.style.display = 'block';
-    statusDiv.className = 'mb-3 text-info';
-    statusDiv.textContent = 'Enviando mensaje...';
-
-    try {
-        const resp = await fetch(form.action, {
-            method: 'POST',
-            body: data
-        });
-
-        if (resp.ok) {
-            statusDiv.className = 'mb-3 text-success';
-            statusDiv.textContent = 'Mensaje enviado correctamente. Te responderemos pronto.';
-            form.reset();
-        } else {
-            statusDiv.className = 'mb-3 text-danger';
-            statusDiv.textContent = 'Hubo un problema al enviar el mensaje. Inténtalo de nuevo.';
-        }
-    } catch (err) {
-        statusDiv.className = 'mb-3 text-danger';
-        statusDiv.textContent = 'Error de conexión al enviar el mensaje.';
-    }
-});
+	    form.addEventListener('submit', function () {
+	        loader.style.display = 'flex';
+	    });
+	
 </script>
 
-<!-- BOTÓN FLOTANTE WHATSAPP -->
-<a href="https://wa.me/51942262448" target="_blank" class="whatsapp-float" aria-label="Chatea por WhatsApp con DealPro">
+<a href="https://wa.me/51942262448?text=Buenas%20tardes,%20me%20gustar%C3%ADa%20solicitar%20una%20cotizaci%C3%B3n%20para%20mi%20empresa%20con%20Dealpro.%20%C2%BFPodr%C3%ADan%20brindarme%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios%20y%20tiempos%20de%20entrega%3F"
+   target="_blank"
+   class="whatsapp-float"
+   aria-label="Chatea por WhatsApp con DealPro">
     <i class="fab fa-whatsapp"></i>
 </a>
-<div class="whatsapp-float-badge">
-    <i class="fas fa-comment-dots"></i>
-    <span>¿Hablamos por WhatsApp?</span>
-</div>
 </body>
 </html>

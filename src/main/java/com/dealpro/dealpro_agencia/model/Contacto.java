@@ -15,11 +15,15 @@ public class Contacto {
 
     private String email;
 
+    private String codigoPais;   // NUEVO
+
     private String telefono;
 
-    private String empresa;      // NUEVO
+    private String empresa;
 
-    private String tipoServicio; // NUEVO
+    private String rucDni;       // NUEVO
+
+    private String tipoServicio;
 
     @Column(columnDefinition = "TEXT")
     private String mensaje;
@@ -30,18 +34,27 @@ public class Contacto {
         this.fechaHora = LocalDateTime.now();
     }
 
-    public Contacto(String nombre, String email, String telefono,
-                    String empresa, String tipoServicio, String mensaje) {
+    public Contacto(String nombre,
+                    String email,
+                    String codigoPais,
+                    String telefono,
+                    String empresa,
+                    String rucDni,
+                    String tipoServicio,
+                    String mensaje) {
         this.nombre = nombre;
         this.email = email;
+        this.codigoPais = codigoPais;
         this.telefono = telefono;
         this.empresa = empresa;
+        this.rucDni = rucDni;
         this.tipoServicio = tipoServicio;
         this.mensaje = mensaje;
         this.fechaHora = LocalDateTime.now();
     }
 
     // getters y setters
+
     public Long getId() { return id; }
 
     public String getNombre() { return nombre; }
@@ -50,11 +63,17 @@ public class Contacto {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
+    public String getCodigoPais() { return codigoPais; }
+    public void setCodigoPais(String codigoPais) { this.codigoPais = codigoPais; }
+
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
 
     public String getEmpresa() { return empresa; }
     public void setEmpresa(String empresa) { this.empresa = empresa; }
+
+    public String getRucDni() { return rucDni; }
+    public void setRucDni(String rucDni) { this.rucDni = rucDni; }
 
     public String getTipoServicio() { return tipoServicio; }
     public void setTipoServicio(String tipoServicio) { this.tipoServicio = tipoServicio; }
